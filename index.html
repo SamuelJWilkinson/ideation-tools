@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morphological Matrix · Ideation Tools</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Ideation tools · after Victor Papanek</p>
+      <h1>Morphological Analysis Matrix</h1>
+    </div>
+    <div class="toolbar">
+      <button id="btn-export" type="button">Export</button>
+      <label class="button" for="file-import">Import</label>
+      <input id="file-import" type="file" accept="application/json" hidden>
+      <button id="btn-print" type="button">Print</button>
+      <button id="btn-reset" type="button" class="danger">Reset</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="goal-label">
+      <label id="goal-label" for="goal" class="big-label">Design goal or question</label>
+      <textarea id="goal" rows="2" placeholder="e.g. How might we help people carry shopping without a car?"></textarea>
+    </section>
+
+    <section class="panel" aria-labelledby="dims-heading">
+      <div class="panel-head">
+        <h2 id="dims-heading">1. Define your three dimensions</h2>
+        <label class="size">Parameters per dimension
+          <select id="size"></select>
+        </label>
+      </div>
+      <p class="hint">Give each dimension a theme (e.g. <em>Users</em>, <em>Materials</em>, <em>Context of use</em>), then list the options within it.</p>
+      <div id="dims" class="dims"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="matrix-heading">
+      <h2 id="matrix-heading">2. Explore combinations</h2>
+      <p class="hint">Each grid is one slice of the cube. Rows and columns are dimensions A and B; each grid is one option of dimension C. Click any cell to write an idea that combines its three parameters.</p>
+      <div class="cube-wrap">
+        <div class="panel-head">
+          <h3 class="sub">Whole matrix</h3>
+          <span id="cube-stats" class="count"></span>
+        </div>
+        <svg id="cube" role="group" aria-label="Isometric view of the whole matrix"></svg>
+        <p class="legend"><span class="sw filled"></span> idea written <span class="sw star"></span> starred <span class="sw"></span> not yet explored</p>
+      </div>
+      <div id="matrix" class="matrix"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="ideas-heading">
+      <div class="panel-head">
+        <h2 id="ideas-heading">3. Your ideas <span id="idea-count" class="count"></span></h2>
+        <label class="size"><input type="checkbox" id="starred-only"> Starred only</label>
+      </div>
+      <ol id="ideas" class="ideas"></ol>
+    </section>
+  </main>
+
+  <dialog id="editor">
+    <form method="dialog" id="editor-form">
+      <h3>Idea</h3>
+      <ul id="editor-combo" class="combo"></ul>
+      <label for="idea-text" class="big-label">Describe an idea combining these three</label>
+      <textarea id="idea-text" rows="7" placeholder="What would this look like? Who uses it? What makes it interesting?"></textarea>
+      <label class="star"><input type="checkbox" id="idea-star"> Star this idea</label>
+      <div class="actions">
+        <button type="button" id="idea-clear" class="danger">Clear</button>
+        <span class="spacer"></span>
+        <button type="submit" value="done" class="primary">Done</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>Work is saved automatically in this browser only. Use Export to keep a copy.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
