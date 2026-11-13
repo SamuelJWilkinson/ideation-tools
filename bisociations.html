@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bisociations · Ideation Tools</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bisociations.css">
+</head>
+<body>
+  <nav class="tools-nav" aria-label="Tools">
+    <a href="index.html">Morphological matrix</a>
+    <a href="sliding-scales.html">Sliding scales</a>
+    <a href="bisociations.html" aria-current="page">Bisociations</a>
+  </nav>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Ideation tools · forced collisions</p>
+      <h1>Bisociations</h1>
+    </div>
+    <div class="toolbar">
+      <button id="btn-export" type="button">Export</button>
+      <label class="button" for="file-import">Import</label>
+      <input id="file-import" type="file" accept="application/json" hidden>
+      <button id="btn-print" type="button">Print</button>
+      <button id="btn-reset" type="button" class="danger">Reset</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="concept-label">
+      <div class="panel-head">
+        <label id="concept-label" for="concept" class="big-label">What are you designing?</label>
+        <span class="round-badge" id="round-badge"></span>
+      </div>
+      <textarea id="concept" rows="2" placeholder="e.g. A chair"></textarea>
+    </section>
+
+    <section class="panel" aria-labelledby="words-heading">
+      <div class="panel-head">
+        <h2 id="words-heading">1. Get your words</h2>
+        <div class="toolbar">
+          <label class="size">Words
+            <select id="count"><option value="6">6</option><option value="7">7</option></select>
+          </label>
+          <button id="btn-random" type="button" class="primary">Generate random nouns</button>
+          <button id="btn-clear-words" type="button">Clear</button>
+        </div>
+      </div>
+      <p class="hint">Generate random nouns, or hand the page to a friend and have them type in words you haven't seen. 🔒 holds a word in place; 🎲 swaps just that one.</p>
+      <ol id="words" class="words"></ol>
+    </section>
+
+    <section class="panel" aria-labelledby="collide-heading">
+      <h2 id="collide-heading">2. Force the collision</h2>
+      <p class="hint">Take each word in turn and smash it into your design. <strong>Write without stopping and without editing</strong>: associations, jokes, half-sentences, nonsense. When the stream runs dry, pull out the idea it left behind.</p>
+      <div id="cards" class="cards"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="ideas-heading">
+      <div class="panel-head">
+        <h2 id="ideas-heading">3. Your ideas <span id="idea-count" class="count"></span></h2>
+        <button id="btn-next" type="button" class="primary">Next round…</button>
+      </div>
+      <p class="hint">Star the ones with legs, then start another round: carry a starred idea forward as the new thing to design and run the words through it again.</p>
+      <ol id="ideas" class="ideas"></ol>
+    </section>
+
+    <section class="panel" id="history-panel" aria-labelledby="history-heading" hidden>
+      <div class="panel-head">
+        <h2 id="history-heading">Earlier rounds <span id="history-count" class="count"></span></h2>
+        <label class="size"><input type="checkbox" id="starred-only"> Starred only</label>
+      </div>
+      <div id="history" class="history"></div>
+    </section>
+  </main>
+
+  <dialog id="next-dialog">
+    <form method="dialog" id="next-form">
+      <h3>Start the next round</h3>
+      <p class="hint" style="margin-top:0">This round is saved under Earlier rounds. Choose what to design next.</p>
+      <div id="next-ideas" class="next-ideas"></div>
+      <label for="next-concept" class="big-label" style="margin-top:12px">Next thing to design</label>
+      <textarea id="next-concept" rows="3"></textarea>
+      <fieldset class="word-choice">
+        <legend class="big-label">Words</legend>
+        <label><input type="radio" name="next-words" value="same" checked> Run the same words again</label>
+        <label><input type="radio" name="next-words" value="new"> Generate new random nouns</label>
+        <label><input type="radio" name="next-words" value="empty"> Start empty (a friend will fill them in)</label>
+      </fieldset>
+      <div class="actions">
+        <button type="button" id="next-cancel">Cancel</button>
+        <span class="spacer"></span>
+        <button type="submit" id="next-go" value="go" class="primary">Start round</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>Work is saved automatically in this browser only. Use Export to keep a copy.</footer>
+  <script src="bisociations.js"></script>
+</body>
+</html>

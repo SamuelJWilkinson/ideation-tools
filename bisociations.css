@@ -1,0 +1,64 @@
+/* Bisociations: builds on style.css */
+.round-badge { color: var(--muted); font-size: .85rem; border: 1px solid var(--line); border-radius: 99px; padding: 1px 10px; }
+
+/* Words */
+.words { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); counter-reset: w; }
+.word { display: flex; gap: 4px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 4px 4px 4px 10px; background: var(--bg); }
+.word::before { counter-increment: w; content: counter(w); color: var(--muted); font-size: .8rem; width: 1ch; flex: none; }
+.word input[type=text] { border: 0; background: transparent; padding: 6px 6px; font-weight: 600; font-size: 1.02rem; min-width: 0; }
+.word input[type=text]:focus { outline-offset: 0; border-radius: 6px; }
+.word button { padding: 2px 6px; font-size: .95rem; flex: none; border-color: transparent; background: transparent; }
+.word button:hover { border-color: var(--line); }
+.word button[aria-pressed="true"] { background: var(--filled); border-color: var(--accent); }
+.word.locked { border-color: var(--accent); }
+
+/* Collision cards */
+.cards { display: grid; gap: 16px; }
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 14px; border-left: 5px solid var(--accent); }
+.card.skip { opacity: .55; border-left-color: var(--line); }
+.card.done { border-left-color: var(--b); }
+.collision { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; margin: 0 0 10px; font-size: 1.1rem; }
+.collision .n { color: var(--muted); font-size: .85rem; }
+.collision .x { color: var(--accent); font-weight: 700; }
+.collision .concept { font-weight: 600; overflow-wrap: anywhere; }
+.collision .noun { font-weight: 700; padding: 0 10px; border-radius: 99px; background: var(--filled); border: 1px solid var(--accent); overflow-wrap: anywhere; }
+.card .flow { font-size: 1rem; line-height: 1.55; }
+.card .idea-row { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+.card .idea-row label.lab { font-weight: 600; flex: none; }
+.card .idea-row input[type=text] { flex: 1 1 260px; width: auto; }
+.card .star { margin: 0; }
+
+/* Idea list */
+.ideas li.bi { cursor: pointer; display: grid; gap: 4px; }
+.ideas li.bi .chips { margin-bottom: 0; }
+.ideas li.bi.starred { border-color: var(--accent); background: var(--filled); }
+.ideas li.bi .none { color: var(--muted); }
+.mark { color: var(--accent); }
+
+/* History */
+.history { display: grid; gap: 10px; margin-top: 12px; }
+.history details { border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+.history summary { cursor: pointer; font-weight: 600; }
+.history summary small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.history ol { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.history li { display: grid; gap: 2px; }
+.history li .row { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.history li label { font-size: .85rem; color: var(--muted); display: inline-flex; gap: 4px; align-items: center; }
+.history li p { margin: 0; white-space: pre-wrap; }
+.history li details { border: 0; padding: 0; }
+.history li summary { font-weight: 400; color: var(--muted); font-size: .85rem; }
+
+/* Next-round dialog */
+.next-ideas { display: grid; gap: 6px; max-height: 40vh; overflow: auto; }
+.next-ideas label { display: flex; gap: 8px; align-items: flex-start; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+.next-ideas label:has(input:checked) { border-color: var(--accent); background: var(--filled); }
+.next-ideas small { display: block; color: var(--muted); }
+.word-choice { border: 0; margin: 12px 0 0; padding: 0; display: grid; gap: 4px; }
+.word-choice legend { padding: 0; }
+.word-choice label { display: flex; gap: 8px; align-items: center; }
+
+@media print {
+  .words button, #btn-next, #btn-random, #btn-clear-words, .idea-row .star { display: none; }
+  .card { break-inside: avoid; }
+  .card .flow { border: 0; padding: 0; resize: none; }
+}
