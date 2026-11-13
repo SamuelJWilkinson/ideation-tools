@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sliding Scales · Ideation Tools</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sliding-scales.css">
+</head>
+<body>
+  <nav class="tools-nav" aria-label="Tools">
+    <a href="index.html">Morphological matrix</a>
+    <a href="sliding-scales.html" aria-current="page">Sliding scales</a>
+  </nav>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Ideation tools · after Victor Papanek</p>
+      <h1>Sliding Scales</h1>
+    </div>
+    <div class="toolbar">
+      <button id="btn-export" type="button">Export</button>
+      <label class="button" for="file-import">Import</label>
+      <input id="file-import" type="file" accept="application/json" hidden>
+      <button id="btn-print" type="button">Print</button>
+      <button id="btn-reset" type="button" class="danger">Reset</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="goal-label">
+      <label id="goal-label" for="goal" class="big-label">Design goal or question</label>
+      <textarea id="goal" rows="2" placeholder="e.g. How might we help people carry shopping without a car?"></textarea>
+    </section>
+
+    <section class="panel" aria-labelledby="rule-heading">
+      <div class="panel-head">
+        <h2 id="rule-heading">1. Slide the sticks</h2>
+        <div class="toolbar">
+          <button id="btn-random" type="button" class="primary">Randomise all</button>
+          <button id="btn-add" type="button">Add stick</button>
+        </div>
+      </div>
+      <p class="hint">Each stick holds options for one area of constraint. Drag a stick up or down, click a label, or use ▲ ▼ to bring an option level with the reading line. <strong>Roll</strong> randomises one stick; <strong>Lock</strong> holds a stick in place while you randomise the rest.</p>
+
+      <div class="rule-scroll">
+        <div id="sticks" class="sticks"></div>
+      </div>
+
+      <div class="reading">
+        <div class="panel-head">
+          <h3 class="sub">Current reading</h3>
+          <button id="btn-save" type="button">Save this reading</button>
+        </div>
+        <ul id="reading" class="reading-list" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="saved-heading">
+      <div class="panel-head">
+        <h2 id="saved-heading">2. Saved readings <span id="saved-count" class="count"></span></h2>
+        <label class="size"><input type="checkbox" id="starred-only"> Starred only</label>
+      </div>
+      <ol id="saved" class="ideas saved"></ol>
+    </section>
+  </main>
+
+  <dialog id="stick-editor">
+    <form method="dialog" id="stick-form">
+      <h3>Edit stick</h3>
+      <label for="stick-title" class="big-label">Area of constraint</label>
+      <input id="stick-title" type="text" placeholder="e.g. Material">
+      <label for="stick-labels" class="big-label" style="margin-top:12px">Labels, one per line</label>
+      <textarea id="stick-labels" rows="10" spellcheck="true"></textarea>
+      <p class="hint" style="margin:6px 0 0">Top to bottom is the order along the stick. Blank lines are ignored.</p>
+      <div class="actions wrap">
+        <button type="button" id="stick-left">← Move left</button>
+        <button type="button" id="stick-right">Move right →</button>
+        <button type="button" id="stick-delete" class="danger">Delete stick</button>
+        <span class="spacer"></span>
+        <button type="submit" value="done" class="primary">Done</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="add-dialog">
+    <form method="dialog">
+      <h3>Add a stick</h3>
+      <p class="hint" id="add-note" style="margin-top:0">Pick a ready-made stick, or start with a blank one and fill in your own labels.</p>
+      <div id="add-list" class="add-list"></div>
+      <div class="actions">
+        <span class="spacer"></span>
+        <button type="submit" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer>Work is saved automatically in this browser only. Use Export to keep a copy.</footer>
+  <script src="sliding-scales.js"></script>
+</body>
+</html>
